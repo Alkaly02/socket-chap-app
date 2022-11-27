@@ -24,7 +24,7 @@ app.use('/', (req, res) => {
 
 // ! socket
 io.on('connection', (socket) => {
-  // console.log('socket io app testing');
+  console.log('socket io app testing');
 
   socket.on('disconnect', () => {
     console.log('Disconnected');

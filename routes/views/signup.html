@@ -31,36 +31,36 @@
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password">
       </div>
-      <!-- <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Confirm password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
-      </div> -->
       <button type="submit" class="btn btn-primary w-100">Signup</button>
       <p class="m-3 p-0 text-center">or</p>
       <p class="m-3 p-0 text-center"><a href="http://localhost:7000/login">login</a></p>
     </form>
   </div>
 
-  <script type="text/javascript" type="module">
+  <script type="text/javascript">
     // const API = require('../../api.js')
     const form = document.querySelector('form')
 
-    form.addEventListener('submit', (e) => {
-      const firstName = document.getElementById("firstName").value
-      const lastName = document.getElementById("lastName").value
+    form.addEventListener('submit', async (e) => {
+      const firstname = document.getElementById("firstName").value
+      const lastname = document.getElementById("lastName").value
       const email = document.getElementById("email").value
       const password = document.getElementById("password").value
       e.preventDefault()
-      console.log({ firstName, lastName, email, password });
+      console.log({ firstname, lastname, email, password });
 
-      fetch('http://localhost/7000/api/signup', {
-        mode: 'no-cors',
+      const data = await fetch('http://localhost:7000/api/signup', {
+        // mode: 'no-cors',
         method: "post",
-        body: JSON.stringify({ firstName, lastName, email, password })
+        body: JSON.stringify({firstname, lastname, email, password}),
+        headers: {'Content-type': 'application/json; charset=UTF-8'}
       })
-      .then(res => console.log(res))
-      .then(result => console.log(result))
-      console.log("http://localhost/7000");
+
+      const {success} = await data.json()
+      
+      if(success){
+        window.location.href = "http://localhost:7000/login";
+      }
     })
   </script>
 </body>
