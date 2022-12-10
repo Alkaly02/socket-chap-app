@@ -33,7 +33,7 @@
       </div>
       <button type="submit" class="btn btn-primary w-100">Signup</button>
       <p class="m-3 p-0 text-center">or</p>
-      <p class="m-3 p-0 text-center"><a href="http://localhost:7000/login">login</a></p>
+      <p class="m-3 p-0 text-center"><a href="http://localhost:7700/login">login</a></p>
     </form>
   </div>
 
@@ -49,7 +49,7 @@
       e.preventDefault()
       console.log({ firstname, lastname, email, password });
 
-      const data = await fetch('http://localhost:7000/api/signup', {
+      const data = await fetch('http://localhost:7700/api/signup', {
         // mode: 'no-cors',
         method: "post",
         body: JSON.stringify({firstname, lastname, email, password}),
@@ -59,7 +59,7 @@
       const {success} = await data.json()
       
       if(success){
-        window.location.href = "http://localhost:7000/login";
+        window.location.href = "http://localhost:7700/login";
       }
     })
   </script>

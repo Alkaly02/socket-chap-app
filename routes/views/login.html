@@ -22,7 +22,7 @@
       </div>
       <button type="submit" class="btn btn-primary w-100">Login</button>
       <p class="m-3 p-0 text-center">or</p>
-      <p class="m-3 p-0 text-center"><a href="http://localhost:7000/signup">signup</a></p>
+      <p class="m-3 p-0 text-center"><a href="http://localhost:7700/signup">signup</a></p>
     </form>
   </div>
 
@@ -36,9 +36,9 @@
       const email = document.getElementById("email").value
       const password = document.getElementById("password").value
       e.preventDefault()
-      console.log({email, password });
+      // console.log({email, password });
 
-      const data = await fetch('http://localhost:7000/api/login', {
+      const data = await fetch('http://localhost:7700/api/login', {
         method: "post",
         body: JSON.stringify({ email, password}),
         headers: {'Content-type': 'application/json; charset=UTF-8'}
@@ -46,10 +46,12 @@
 
       const result = await data.json()
 
+      localStorage.setItem('currentUser', JSON.stringify(result))
+
       console.log(result);
       
       if(result){
-        window.location.href = "http://localhost:7000/me";
+        window.location.href = "http://localhost:7700/me";
       }
     })
   </script>

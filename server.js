@@ -34,8 +34,8 @@ io.on('connection', (socket) => {
     console.log('message sender: ' + msg);
   });
 
-  socket.on("writing message", (msg) => {
-    console.log('sending message: ', msg);
+  socket.on("writing message", (infos) => {
+    console.log(infos.message + ' message is sending to ' + infos.selectedUser + ' by ' + infos.sender);
   })
 });
 
